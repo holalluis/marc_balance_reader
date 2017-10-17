@@ -16,7 +16,7 @@ import sys
 import time
 
 '''CONFIGURACIÓ LECTURA BALANÇA'''
-comanda='w';    #comanda de la balança
+comanda='w';    #comanda enviada a la balança
 espera=1;       #lectura cada 'espera' segons
 max_lectures=3; #num max de lectures
 
