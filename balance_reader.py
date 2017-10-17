@@ -98,6 +98,6 @@ def crea_csv():
 	#tanca el fitxer
 	f.close();
 
-#crida la funcio per crear csv
+#crida la funció per crear csv
 crea_csv()
 
