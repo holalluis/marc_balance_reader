@@ -1,4 +1,5 @@
 # Marc Balance Reader
+Balance reader script for March Sauchelli
 
 ## Script 'balance_reader.py' que:
 
