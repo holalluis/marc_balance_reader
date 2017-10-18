@@ -1,5 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
+'''CONFIGURACIÓ LECTURA BALANÇA'''
+comanda='w';    #comanda enviada a la balança
+espera=1;       #lectura cada 'espera' segons
+max_lectures=3; #num max de lectures
+
 '''
 	Script que:
 			1. Crea una connexió serial amb la balança
@@ -14,11 +20,6 @@ print "+---------------------------+"
 import serial
 import sys
 import time
-
-'''CONFIGURACIÓ LECTURA BALANÇA'''
-comanda='w';    #comanda enviada a la balança
-espera=1;       #lectura cada 'espera' segons
-max_lectures=3; #num max de lectures
 
 '''CONFIGURACIÓ PORT SERIAL'''
 ser=serial.Serial()
@@ -45,7 +46,7 @@ raw_input('Prem [Enter] per iniciar')
 
 '''processa una resposta de la balança'''
 def processa_resposta(resposta):
-	resposta=['         0.2 g  \r\n', '         0.2 g  \r\n']; #exemple
+	#exemple #resposta=['         0.2 g  \r\n', '         0.2 g  \r\n'];
 	pes=resposta[0];
 	pes=pes.replace(' ','').replace('g','').replace('\r','').replace('\n','');
 	#date
@@ -74,6 +75,12 @@ while True:
 	ser.write(comanda);
 	ser.flush();
 	resposta=ser.readlines();
+
+	if len(resposta)==0: 
+		print "La balança no respon"
+		print resposta
+		sys.exit()
+
 	fila=processa_resposta(resposta);
 	print fila;
 	serie_temporal.append(fila);
